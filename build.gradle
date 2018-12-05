@@ -1,0 +1,41 @@
+import com.github.kr328.plugin.riru.CMakePlugin
+import com.github.kr328.plugin.riru.utils.PathUtils
+
+apply plugin: 'java'
+apply plugin: 'idea'
+apply plugin: CMakePlugin;
+
+group 'com.github.kr328'
+version '1.0'
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+def localProperties = new Properties();
+localProperties.load(new FileReader("local.properties"))
+
+repositories {
+    mavenCentral()
+    jcenter()
+}
+
+sourceSets {
+    main.compileClasspath += files("android-sdk/android.jar");
+    test.compileClasspath += files("android-sdk/android.jar");
+}
+
+cmake {
+    source 'src/main/cpp'
+    abiFilter "armeabi-v7a" ,"arm64-v8a"
+}
+
+task cleanAll(type: Delete) {
+    delete "build" ,"out" , PathUtils.toLocalSeparator("buildSrc/build") ,PathUtils.toLocalSeparator("buildSrc/out")
+}
+
+dependencies {
+    
+}
+
+build.dependsOn(cmakeBuild)
+clean.dependsOn(cleanAll)
