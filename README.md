@@ -1,17 +1,16 @@
-# Riru - InternalBrowserRedirect
+# RiruModuleTemplate
 
-A module of [Riru](https://github.com/RikkaApps/Riru). Redirect internal browser activity to ACTION_VIEW.
+A module template of [Riru](https://github.com/RikkaApps/Riru).
 
 ## Requirements
 
 * [Riru](https://github.com/RikkaApps/Riru) installed.
-* Android 9.0 (8.0/8.1 not tested)
 
 ## Build
 
   1.Install JDK ,Gradle ,Android SDK ,Android NDK
 
-  2.Configure with your environment [local.properties](https://github.com/Kr328/Riru-InternalBrowserRedirect/blob/master/local.properties)
+  2.Configure with your environment [local.properties](https://github.com/Kr328/RiruModuleTemplate/blob/master/local.properties)
 
   3.Run command 
 
