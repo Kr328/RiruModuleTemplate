@@ -1,6 +1,7 @@
 import com.github.kr328.plugin.riru.CMakePlugin
 import com.github.kr328.plugin.riru.MagiskPlugin
 import com.github.kr328.plugin.riru.TransformDexPlugin
+import com.github.kr328.plugin.riru.utils.AndroidUtils
 import com.github.kr328.plugin.riru.utils.PathUtils
 
 apply plugin: 'java'
@@ -18,6 +19,8 @@ repositories {
 }
 
 sourceSets {
+    main.compileClasspath += project(":classpath").files("src/main/java") // for hidden api
+    main.compileClasspath += files(AndroidUtils.androidJarPath("android-28")) //android.jar
 }
 
 compileJava {
@@ -49,7 +52,6 @@ task cleanAll(type: Delete) {
 }
 
 dependencies {
-    
 }
 
 assemble.dependsOn.clear()

@@ -1,5 +1,7 @@
 package com.github.kr328.plugin.riru.exts;
 
+import com.github.kr328.plugin.riru.utils.PathUtils;
+
 public class TransformDexExtension {
     private String buildToolsVersion = "";
     private String compilePlatform = "";

@@ -1,2 +1,3 @@
 rootProject.name = 'RiruModuleTemplate'
 
+include ":classpath"
