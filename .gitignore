@@ -1,8 +1,5 @@
 .gradle
-/build/
-
-# QtCreator
-/src/main/cpp/CMakeLists.txt.user
+build/
 
 # Ignore Gradle GUI config
 gradle-app.setting

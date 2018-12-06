@@ -4,4 +4,4 @@ version=v1
 versionCode=1
 author=Kr328
 description=Riru Module Template
-minMagisk=1800
+minMagisk=17000

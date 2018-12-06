@@ -1,8 +1,6 @@
 cmake_minimum_required(VERSION 3.0)
 project(riru_utils)
 
-include_directories(/usr/lib/jvm/default/include /usr/lib/jvm/default/include/linux)
-
 add_subdirectory(libxhook)
 add_subdirectory(libriru)
 

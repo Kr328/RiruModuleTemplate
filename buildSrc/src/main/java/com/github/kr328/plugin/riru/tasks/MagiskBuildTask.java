@@ -38,7 +38,7 @@ public class MagiskBuildTask extends DefaultTask {
                 archiveEntry(f.getAbsolutePath() ,target + "/" + f.getName() ,stream);
         }
         else if ( sourceFile.isFile() ) {
-            ZipEntry entry = new ZipEntry(PathUtils.trimPathSeparator(target));
+            ZipEntry entry = new ZipEntry(PathUtils.zipEntry(target));
             stream.putNextEntry(entry);
             readFileToStream(new File(source) ,stream);
         }

@@ -93,3 +93,9 @@ int riru_utils_set_replace_jni_methods(riru_utils_jni_replace_class_t *classes ,
 
     return 0;
 }
+
+int riru_utils_init_module(const char *module_name) {
+	riru_set_module_name(module_name);
+
+	return 0;
+}

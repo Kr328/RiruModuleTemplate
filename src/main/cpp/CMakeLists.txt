@@ -8,5 +8,5 @@ include_directories(libriru_utils/libxhook)
 add_subdirectory(libriru_utils)
 
 add_library(riru_template SHARED main.c)
-target_link_libraries(riru_template riru_utils)
+target_link_libraries(riru_template riru_utils log)
 

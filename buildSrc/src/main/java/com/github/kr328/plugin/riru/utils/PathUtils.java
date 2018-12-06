@@ -7,8 +7,11 @@ public class PathUtils {
         return p.replace('/' , File.separatorChar).replace('\\' ,File.separatorChar);
     }
 
-    public static String trimPathSeparator(String p) {
-        return p.replaceAll("/+" ,"/");
+    public static String zipEntry(String p) {
+        String result = p.replaceAll("/+" ,"/");
+        if ( result.indexOf('/') == 0 )
+            return result.substring(1);
+        return result;
     }
 
     public static synchronized String executableSuffix() {
