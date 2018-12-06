@@ -98,6 +98,9 @@ set_permissions() {
 # difficult for you to migrate your modules to newer plugin versions.
 # Make update-binary as clean as possible, try to only do function calls in it.
 
+# Riru
+RIRU_MODULE_NAME=template
+
 check_riru_installed() {
     if [ ! -d "/data/misc/riru" ];then
         ui_print "!Riru not installed"
@@ -118,5 +121,6 @@ check_architecture() {
 config_riru_module() {
     ui_print "- Config Riru Module"
 
-    ln -s $MODPATH/module.prop /data/riru/riru_template/module.prop
+    mkdir -p /data/misc/riru/modules/${RIRU_MODULE_NAME}
+    cp $MODPATH/module.prop /data/misc/riru/modules/${RIRU_MODULE_NAME}/module.prop
 }
