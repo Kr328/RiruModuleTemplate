@@ -42,7 +42,7 @@ LATESTARTSERVICE=false
 
 print_modname() {
   ui_print "******************************"
-  ui_print "Riru - InternalBrowserRedirect"
+  ui_print "       Riru - Template        "
   ui_print "******************************"
 }
 
@@ -109,23 +109,20 @@ check_riru_installed() {
 extract_files() {
 	ui_print "- Extract files"
 	
-	mkdir -p "$TMPDIR/ibr/"
-	unzip -o "$ZIP" 'loader/*' -d "$TMPDIR/ibr/" > /dev/null 2> /dev/null
+	mkdir -p "$TMPDIR/riru_module/"
+	unzip -o "$ZIP" 'loader/*' -d "$TMPDIR/riru_module/" > /dev/null 2> /dev/null
 	if [[ "$ARCH" = "arm" ]];then
 		mkdir -p "$MODPATH/system/lib"
-		cp "$TMPDIR/ibr/loader/armeabi-v7a/libriru_ibr.so" "$MODPATH/system/lib/"
+		cp "$TMPDIR/riru_module /loader/armeabi-v7a/libriru_ibr.so" "$MODPATH/system/lib/"
 	elif [[ "$ARCH" = "arm64" ]];then
 		mkdir -p "$MODPATH/system/lib"
 		mkdir -p "$MODPATH/system/lib64"
-		cp "$TMPDIR/ibr/loader/armeabi-v7a/libriru_ibr.so" "$MODPATH/system/lib/"
-		cp "$TMPDIR/ibr/loader/arm64-v8a/libriru_ibr.so"   "$MODPATH/system/lib64/"
+		cp "$TMPDIR/riru_module/loader/armeabi-v7a/*" "$MODPATH/system/lib/"
+		cp "$TMPDIR/riru_module/loader/arm64-v8a/*"   "$MODPATH/system/lib64/"
 	else
 		ui_print "- Unspported architecture: $ARCH"
 		exit 1
 	fi
-	
-	mkdir -p "$MODPATH/data"
-	unzip -o "$ZIP" 'data/*' -d "$MODPATH/" > /dev/null 2> /dev/null
 	
 	ln -s $MODPATH/module.prop $MODPATH/data/module.prop
 }

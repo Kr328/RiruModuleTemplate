@@ -2,8 +2,8 @@ package com.github.kr328.plugin.riru.tasks;
 
 import com.github.kr328.plugin.riru.exts.MagiskExtension;
 import com.github.kr328.plugin.riru.utils.PathUtils;
-import org.apache.tools.ant.taskdefs.Zip;
 import org.gradle.api.DefaultTask;
+import org.gradle.api.GradleScriptException;
 import org.gradle.api.tasks.TaskAction;
 
 import java.io.*;
@@ -18,7 +18,7 @@ public class MagiskBuildTask extends DefaultTask {
     @TaskAction
     @SuppressWarnings({"unused", "ResultOfMethodCallIgnored"})
     public void run() throws IOException {
-        File outputFile = new File(PathUtils.toLocalSeparator(getProject().getBuildDir().getAbsolutePath() + "/build/output/magisk-module.zip"));
+        File outputFile = new File(PathUtils.toLocalSeparator(getProject().getBuildDir().getAbsolutePath() + "/output/magisk-module.zip"));
         outputFile.getParentFile().mkdirs();
 
         ZipOutputStream outputStream = new ZipOutputStream(new FileOutputStream(outputFile));
@@ -39,10 +39,11 @@ public class MagiskBuildTask extends DefaultTask {
         }
         else if ( sourceFile.isFile() ) {
             ZipEntry entry = new ZipEntry(PathUtils.trimPathSeparator(target));
-            //System.out.println(entry);
             stream.putNextEntry(entry);
             readFileToStream(new File(source) ,stream);
         }
+        else
+            throw new GradleScriptException("Magisk file not found." ,new FileNotFoundException(source));
     }
 
     @SuppressWarnings("ResultOfMethodCallIgnored")

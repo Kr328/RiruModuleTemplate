@@ -29,7 +29,13 @@ static jint replaced_jni_register(JNIEnv *env, const char *class_name, const JNI
                 JNINativeMethod *current_method = new_methods + c;
                 for ( int d = 0 ; d < current->method_count ; d++ ) {
                     if ( !strcmp(current_method->name ,current->methods[d].method_name) && !strcmp(current_method->signature ,current->methods[d].signature) ) {
-                        *current->methods[d].original_function = current_method->fnPtr;
+                        void *original = riru_get_native_method_func(class_name ,current_method->name ,current_method->signature);
+                        if ( !original || original == current->methods[d].replace_function )
+                            original = current_method->fnPtr;
+
+                        riru_set_native_method_func(class_name ,current_method->name ,current_method->signature ,current_method->fnPtr);
+
+                        *current->methods[d].original_function = original;
                         current_method->fnPtr = current->methods[d].replace_function;
                     }
                 }

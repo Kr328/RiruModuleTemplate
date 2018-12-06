@@ -38,9 +38,9 @@ public class CMakeConfigTask extends DefaultTask {
                 "-DANDROID_PLATFORM=" + extension.getPlatform(),
                 "-DANDROID_STL=" + extension.getStl(),
                 "-DANDROID_ABI=" + abi ,
-                "-DCMAKE_ARCHIVE_OUTPUT_DIRECTORY=" + "output/static" ,
-                "-DCMAKE_LIBRARY_OUTPUT_DIRECTORY=" + "output/dynamic" ,
-                "-DCMAKE_RUNTIME_OUTPUT_DIRECTORY=" + "output/executable" ,
+                "-DCMAKE_ARCHIVE_OUTPUT_DIRECTORY=" + PathUtils.toLocalSeparator(getProject().getBuildDir().getAbsolutePath() + "/output/cmake/" + abi + "/static") ,
+                "-DCMAKE_LIBRARY_OUTPUT_DIRECTORY=" + PathUtils.toLocalSeparator(getProject().getBuildDir().getAbsolutePath() + "/output/cmake/" + abi + "/shared") ,
+                "-DCMAKE_RUNTIME_OUTPUT_DIRECTORY=" + PathUtils.toLocalSeparator(getProject().getBuildDir().getAbsolutePath() + "/output/cmake/" + abi + "/executable") ,
                 getProject().file(PathUtils.toLocalSeparator(extension.getSource())).getAbsolutePath());
 
         File cmakeConfigDirectory = getProject().file(PathUtils.toLocalSeparator(getProject().getBuildDir().getAbsolutePath() + "/intermediate/cmake/" + abi)).getAbsoluteFile();

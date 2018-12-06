@@ -38,13 +38,14 @@ cmake {
 dex {
     buildToolsVersion "28.0.3"
     compilePlatform "android-28"
-    output "boot-ibr.jar"
+    output "boot-template.jar"
 }
 
 magisk {
-    map "$buildDir/intermediate/dex/" ,"system/framework/"
-    map "$buildDir/intermediate/cmake/armeabi-v7a/output/shared" ,"loader/armeabi-v7a"
-    map "$buildDir/intermediate/cmake/arm64-v8a/output/shared"   ,"loader/arme64-v8a"
+    map "$buildDir/output/dex/" ,"system/framework/"
+    map "$buildDir/output/cmake/armeabi-v7a/shared" ,"loader/armeabi-v7a"
+    map "$buildDir/output/cmake/arm64-v8a/shared"   ,"loader/arme64-v8a"
+    map "src/main/raw/magisk-module-config" ,""
 }
 
 task cleanAll(type: Delete) {

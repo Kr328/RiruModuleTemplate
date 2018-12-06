@@ -1,14 +1,12 @@
 cmake_minimum_required(VERSION 3.0)
-project(riru_utils)
+project(loader)
 
-include_directories(/usr/lib/jvm/default/include /usr/lib/jvm/default/include/linux)
+include_directories(libriru_utils)
+include_directories(libriru_utils/libriru)
+include_directories(libriru_utils/libxhook)
 
-add_subdirectory(libxhook)
-add_subdirectory(libriru)
+add_subdirectory(libriru_utils)
 
-set(CMAKE_CXX_STANDARD 14)
-
-add_library(riru_utils STATIC main.cpp riru_utils.h riru_utils.c)
-target_link_libraries(riru_utils riru xhook)
-target_include_directories(riru_utils PRIVATE libxhook libriru)
+add_library(riru_template SHARED main.c)
+target_link_libraries(riru_template riru_utils)
 

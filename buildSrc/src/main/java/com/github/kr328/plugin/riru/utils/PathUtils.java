@@ -1,8 +1,6 @@
 package com.github.kr328.plugin.riru.utils;
 
 import java.io.File;
-import java.util.Objects;
-import java.util.function.Consumer;
 
 public class PathUtils {
     public static String toLocalSeparator(String p) {
