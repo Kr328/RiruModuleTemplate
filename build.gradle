@@ -9,9 +9,6 @@ apply plugin: CMakePlugin
 apply plugin: TransformDexPlugin
 apply plugin: MagiskPlugin
 
-group 'com.github.kr328'
-version '1.0'
-
 sourceCompatibility = 1.8
 targetCompatibility = 1.8
 
@@ -21,8 +18,6 @@ repositories {
 }
 
 sourceSets {
-    main.compileClasspath += files("android-sdk/android.jar");
-    test.compileClasspath += files("android-sdk/android.jar");
 }
 
 compileJava {
@@ -42,10 +37,10 @@ dex {
 }
 
 magisk {
-    map "$buildDir/output/dex/" ,"system/framework/"
-    map "$buildDir/output/cmake/armeabi-v7a/shared" ,"loader/armeabi-v7a"
-    map "$buildDir/output/cmake/arm64-v8a/shared"   ,"loader/arme64-v8a"
-    map "src/main/raw/magisk-module-config" ,""
+    map file("$buildDir/output/dex/") ,"system/framework/"
+    map file("$buildDir/output/cmake/armeabi-v7a/shared") ,"system/lib"
+    map file("$buildDir/output/cmake/arm64-v8a/shared")   ,"system/lib64"
+    map file("src/main/raw/magisk") ,""
 }
 
 task cleanAll(type: Delete) {

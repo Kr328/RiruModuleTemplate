@@ -139,8 +139,11 @@ $POSTFSDATA && cp -af $INSTALLER/common/post-fs-data.sh $MODPATH/post-fs-data.sh
 # service mode scripts
 $LATESTARTSERVICE && cp -af $INSTALLER/common/service.sh $MODPATH/service.sh
 
-# Extract files
-extract_files
+# check architecture
+check_architecture
+
+# Config riru module
+config_riru_module
 
 ui_print "- Setting permissions"
 set_permissions

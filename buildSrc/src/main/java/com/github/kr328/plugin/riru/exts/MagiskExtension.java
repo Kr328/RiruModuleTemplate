@@ -2,17 +2,18 @@ package com.github.kr328.plugin.riru.exts;
 
 import com.github.kr328.plugin.riru.utils.PathUtils;
 
+import java.io.File;
 import java.util.HashMap;
 
 public class MagiskExtension {
-    private HashMap<String ,String> zipMap = new HashMap<>();
+    private HashMap<File,String> zipMap = new HashMap<>();
 
-    public MagiskExtension map(String source ,String target) {
-        zipMap.put(PathUtils.toLocalSeparator(source) ,target);
+    public MagiskExtension map(File source ,String target) {
+        zipMap.put(source ,target);
         return this;
     }
 
-    public HashMap<String ,String> getZipMap() {
+    public HashMap<File ,String> getZipMap() {
         return zipMap;
     }
 }

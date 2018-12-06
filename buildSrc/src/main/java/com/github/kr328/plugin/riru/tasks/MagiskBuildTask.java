@@ -23,27 +23,25 @@ public class MagiskBuildTask extends DefaultTask {
 
         ZipOutputStream outputStream = new ZipOutputStream(new FileOutputStream(outputFile));
 
-        for ( Map.Entry<String ,String> entry : extension.getZipMap().entrySet() ) {
+        for ( Map.Entry<File ,String> entry : extension.getZipMap().entrySet() ) {
             archiveEntry(entry.getKey() ,entry.getValue() ,outputStream);
         }
 
         outputStream.close();
     }
 
-    private void archiveEntry(String source ,String target ,ZipOutputStream stream) throws IOException {
-        File sourceFile = new File(source);
-
-        if ( sourceFile.isDirectory() ) {
-            for ( File f : Objects.requireNonNull(sourceFile.listFiles()))
-                archiveEntry(f.getAbsolutePath() ,target + "/" + f.getName() ,stream);
+    private void archiveEntry(File source ,String target ,ZipOutputStream stream) throws IOException {
+        if ( source.isDirectory() ) {
+            for ( File f : Objects.requireNonNull(source.listFiles()))
+                archiveEntry(f ,target + "/" + f.getName() ,stream);
         }
-        else if ( sourceFile.isFile() ) {
+        else if ( source.isFile() ) {
             ZipEntry entry = new ZipEntry(PathUtils.zipEntry(target));
             stream.putNextEntry(entry);
-            readFileToStream(new File(source) ,stream);
+            readFileToStream(source ,stream);
         }
         else
-            throw new GradleScriptException("Magisk file not found." ,new FileNotFoundException(source));
+            throw new GradleScriptException("Magisk file not found." ,new FileNotFoundException(source.getAbsolutePath()));
     }
 
     @SuppressWarnings("ResultOfMethodCallIgnored")

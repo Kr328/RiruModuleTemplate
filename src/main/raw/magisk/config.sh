@@ -106,23 +106,17 @@ check_riru_installed() {
     fi
 }
 
-extract_files() {
-	ui_print "- Extract files"
-	
-	mkdir -p "$TMPDIR/riru_module/"
-	unzip -o "$ZIP" 'loader/*' -d "$TMPDIR/riru_module/" > /dev/null 2> /dev/null
-	if [[ "$ARCH" = "arm" ]];then
-		mkdir -p "$MODPATH/system/lib"
-		cp "$TMPDIR/riru_module /loader/armeabi-v7a/libriru_ibr.so" "$MODPATH/system/lib/"
-	elif [[ "$ARCH" = "arm64" ]];then
-		mkdir -p "$MODPATH/system/lib"
-		mkdir -p "$MODPATH/system/lib64"
-		cp "$TMPDIR/riru_module/loader/armeabi-v7a/*" "$MODPATH/system/lib/"
-		cp "$TMPDIR/riru_module/loader/arm64-v8a/*"   "$MODPATH/system/lib64/"
-	else
+check_architecture() {
+	ui_print "- Check Architecture"
+
+	if [[ "$ARCH" != "arm" ]] && [[ "$ARCH" != "arm64" ]];then
 		ui_print "- Unspported architecture: $ARCH"
 		exit 1
 	fi
-	
-	ln -s $MODPATH/module.prop $MODPATH/data/module.prop
+}
+
+config_riru_module() {
+    ui_print "- Config Riru Module"
+
+    ln -s $MODPATH/module.prop /data/riru/riru_template/module.prop
 }
