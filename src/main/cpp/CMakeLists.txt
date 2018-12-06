@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.0)
-project(loader)
+project(riru_template)
 
 include_directories(libriru_utils)
 include_directories(libriru_utils/libriru)
