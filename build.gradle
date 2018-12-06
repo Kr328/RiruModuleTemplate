@@ -52,5 +52,8 @@ dependencies {
     
 }
 
-build.dependsOn(cmakeBuild ,transformDex ,buildMagiskModule)
+assemble.dependsOn.clear()
+build.dependsOn.clear()
+assemble.dependsOn(cmakeBuild ,transformDex ,buildMagiskModule)
+build.dependsOn(assemble)
 clean.dependsOn(cleanAll)
