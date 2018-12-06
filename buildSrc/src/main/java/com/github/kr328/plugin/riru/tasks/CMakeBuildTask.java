@@ -31,9 +31,9 @@ public class CMakeBuildTask extends DefaultTask {
         ProcessBuilder builder = new ProcessBuilder();
         StringBuilder  outputs = new StringBuilder();
 
-        builder.command(config.cmakePath, "--build" ,".");
+        builder.command(PathUtils.toLocalSeparator(config.cmakeDirectory + "/bin/cmake" + PathUtils.executableSuffix()) , "--build" ,".");
 
-        File cmakeConfigDirectory = getProject().file(PathUtils.toLocalSeparator("build/intermediate/cmake/" + abi)).getAbsoluteFile();
+        File cmakeConfigDirectory = getProject().file(PathUtils.toLocalSeparator(getProject().getBuildDir().getAbsolutePath() + "/intermediate/cmake/" + abi)).getAbsoluteFile();
 
         builder.directory(cmakeConfigDirectory);
 

@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.12)
+cmake_minimum_required(VERSION 3.0)
 project(riru_utils)
 
 include_directories(/usr/lib/jvm/default/include /usr/lib/jvm/default/include/linux)

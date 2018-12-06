@@ -31,7 +31,9 @@ public class CMakeConfigTask extends DefaultTask {
         ProcessBuilder builder = new ProcessBuilder();
         StringBuilder  outputs = new StringBuilder();
 
-        builder.command(config.cmakePath,
+        builder.command(PathUtils.toLocalSeparator(config.cmakeDirectory + "/bin/cmake" + PathUtils.executableSuffix()) ,
+                "-G" ,"Ninja" ,
+                "-DCMAKE_MAKE_PROGRAM=" + PathUtils.toLocalSeparator(config.cmakeDirectory + "/bin/ninja" + PathUtils.executableSuffix()),
                 "-DCMAKE_TOOLCHAIN_FILE=" + PathUtils.toLocalSeparator(config.androidNdkPath + "/build/cmake/android.toolchain.cmake") ,
                 "-DANDROID_PLATFORM=" + extension.getPlatform(),
                 "-DANDROID_STL=" + extension.getStl(),
@@ -41,7 +43,7 @@ public class CMakeConfigTask extends DefaultTask {
                 "-DCMAKE_RUNTIME_OUTPUT_DIRECTORY=" + "output/executable" ,
                 getProject().file(PathUtils.toLocalSeparator(extension.getSource())).getAbsolutePath());
 
-        File cmakeConfigDirectory = getProject().file(PathUtils.toLocalSeparator("build/intermediate/cmake/" + abi)).getAbsoluteFile();
+        File cmakeConfigDirectory = getProject().file(PathUtils.toLocalSeparator(getProject().getBuildDir().getAbsolutePath() + "/intermediate/cmake/" + abi)).getAbsoluteFile();
         cmakeConfigDirectory.mkdirs();
 
         builder.directory(cmakeConfigDirectory);
