@@ -52,6 +52,7 @@ task cleanAll(type: Delete) {
 }
 
 dependencies {
+    compileOnly project("classpath")
 }
 
 assemble.dependsOn.clear()
