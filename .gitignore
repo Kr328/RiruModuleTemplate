@@ -1,6 +1,7 @@
 .gradle
 build/
 out/
+.cxx/
 
 # Ignore Gradle GUI config
 gradle-app.setting
@@ -21,3 +22,6 @@ gradle-app.setting
 # KeyStore
 *.keystore
 *.jks
+
+# local
+local.properties

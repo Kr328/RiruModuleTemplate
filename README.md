@@ -8,13 +8,13 @@ A module template of [Riru](https://github.com/RikkaApps/Riru).
 
 ## Build
 
-  1.Install JDK ,Gradle ,Android SDK ,Android NDK
+  1.Install JDK ,Android SDK ,Android NDK
 
-  2.Configure with your environment [local.properties](https://github.com/Kr328/RiruModuleTemplate/blob/master/local.properties)
+  2.Configure `local.properties` with your environment
 
   3.Run command 
 
 ``` Gradle 
-./gradlew build
+./gradlew module:assembleRelease
 ```
-  4.Pick magisk-module.zip from build/outputs
+  4.Pick riru-module-template.zip from module/outputs/
